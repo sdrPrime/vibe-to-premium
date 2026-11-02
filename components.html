@@ -1,0 +1,149 @@
+<!doctype html>
+<!-- Vibe-to-Premium styleguide: every component on the landing page, built from tokens.css + styles.css. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Styleguide · Vibe-to-Premium</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Design system for A one-person design studio for apps built with Lovable, Cursor, Bolt and v0. Three premium screens in five days, shipped as a pull request.">
+  <meta name="theme-color" content="#FBF8F3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1A1714" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/figtree-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <script>(function(){var d=document.documentElement,t=null;d.classList.add('js');try{t=localStorage.getItem('theme')}catch(e){}if(t)d.dataset.theme=t;d.dataset.resolvedTheme=t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')})()</script>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="site.css">
+  <style>
+    .sg-section { padding-block: var(--space-8); border-top: 1px solid var(--color-border); }
+    .sg-section:first-of-type { border-top: 0; }
+    .sg-section > h2 { margin-bottom: var(--space-5); }
+    .sg-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4); }
+    .sg-label { font-size: var(--text-xs); font-weight: var(--weight-semibold); text-transform: uppercase; letter-spacing: .06em; color: var(--color-ink-muted); width: 100%; margin-top: var(--space-2); }
+    .sg-swatches { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); gap: var(--space-4); }
+    .sg-swatch { display: grid; gap: 2px; font-size: var(--text-sm); }
+    .sg-swatch__chip { height: 4.5rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); margin-bottom: var(--space-2); box-shadow: var(--shadow-xs); }
+    .sg-swatch code, .sg-hex { font-size: var(--text-xs); color: var(--color-ink-muted); }
+    .sg-type { display: grid; gap: var(--space-1); padding-block: var(--space-4); border-bottom: 1px dashed var(--color-border); }
+    .sg-type__meta { display: flex; gap: var(--space-3); font-size: var(--text-xs); color: var(--color-ink-muted); }
+    .sg-grid { display: grid; gap: var(--space-5); }
+    @media (min-width: 760px) { .sg-grid--2 { grid-template-columns: 1fr 1fr; } .sg-grid--3 { grid-template-columns: repeat(3, 1fr); } }
+    .sg-tokens { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+    .sg-tokens > div { display: grid; gap: var(--space-2); justify-items: center; font-size: var(--text-xs); color: var(--color-ink-muted); }
+    .sg-box { width: 5rem; height: 5rem; background: var(--color-surface); border: 1px solid var(--color-border); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="container nav__inner">
+      <a class="brand" href="index.html" aria-label="Vibe-to-Premium home"><svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--color-accent)"/><path d="M8.5 19.5c2-3.5 3.6-3.5 5 0s3-3.5 5 0" stroke="var(--color-accent-ink)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/><path d="M21.5 8.5l1.1 2.6 2.6 1.1-2.6 1.1-1.1 2.6-1.1-2.6-2.6-1.1 2.6-1.1z" fill="var(--color-accent-ink)"/></svg><span data-slot="brand">Vibe-to-Premium</span></a>
+      <nav aria-label="Primary">
+        <ul class="nav__links"><li><a href="#color">Color</a></li><li><a href="#type">Type</a></li><li><a href="#buttons">Buttons</a></li><li><a href="#forms">Forms</a></li><li><a href="#feedback">Feedback</a></li></ul>
+      </nav>
+      <div class="nav__actions">
+        <button class="btn btn--ghost btn--icon btn--sm theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button>
+        <a class="btn btn--primary btn--sm" href="index.html">View landing page</a>
+      </div>
+    </div>
+  </header>
+  <main id="main" class="container">
+    <header class="section-head" style="padding-block:var(--space-9) var(--space-6);text-align:left;margin-inline:0">
+      <p class="eyebrow">Design system v1</p>
+      <h1 class="display" style="font-size:var(--text-2xl)">Vibe-to-Premium styleguide</h1>
+      <p class="lead">Warm off-white, soft ink, one confident accent. Every value lives in <code>tokens.css</code>; flip the theme toggle to see dark mode.</p>
+    </header>
+
+    <section class="sg-section" id="color" aria-labelledby="color-t">
+      <h2 class="h2" id="color-t">Color</h2>
+      <ul class="sg-swatches"><li class="sg-swatch"><span class="sg-swatch__chip" style="background:var(--color-bg)"></span><b>Background</b><code>--color-bg</code><span class="sg-hex" data-hex="--color-bg"></span></li><li class="sg-swatch"><span class="sg-swatch__chip" style="background:var(--color-bg-sunken)"></span><b>Sunken</b><code>--color-bg-sunken</code><span class="sg-hex" data-hex="--color-bg-sunken"></span></li><li class="sg-swatch"><span class="sg-swatch__chip" style="background:var(--color-surface)"></span><b>Surface</b><code>--color-surface</code><span class="sg-hex" data-hex="--color-surface"></span></li><li class="sg-swatch"><span class="sg-swatch__chip" style="background:var(--color-border)"></span><b>Border</b><code>--color-border</code><span class="sg-hex" data-hex="--color-border"></span></li><li class="sg-swatch"><span class="sg-swatch__chip" style="background:var(--color-ink)"></span><b>Ink</b><code>--color-ink</code><span class="sg-hex" data-hex="--color-ink"></span></li><li class="sg-swatch"><span class="sg-swatch__chip" style="background:var(--color-ink-muted)"></span><b>Ink muted</b><code>--color-ink-muted</code><span class="sg-hex" data-hex="--color-ink-muted"></span></li><li class="sg-swatch"><span class="sg-swatch__chip" style="background:var(--color-accent)"></span><b>Accent</b><code>--color-accent</code><span class="sg-hex" data-hex="--color-accent"></span></li><li class="sg-swatch"><span class="sg-swatch__chip" style="background:var(--color-accent-soft)"></span><b>Accent soft</b><code>--color-accent-soft</code><span class="sg-hex" data-hex="--color-accent-soft"></span></li><li class="sg-swatch"><span class="sg-swatch__chip" style="background:var(--color-accent-strong)"></span><b>Accent strong</b><code>--color-accent-strong</code><span class="sg-hex" data-hex="--color-accent-strong"></span></li><li class="sg-swatch"><span class="sg-swatch__chip" style="background:var(--color-secondary)"></span><b>Secondary</b><code>--color-secondary</code><span class="sg-hex" data-hex="--color-secondary"></span></li><li class="sg-swatch"><span class="sg-swatch__chip" style="background:var(--color-secondary-soft)"></span><b>Secondary soft</b><code>--color-secondary-soft</code><span class="sg-hex" data-hex="--color-secondary-soft"></span></li><li class="sg-swatch"><span class="sg-swatch__chip" style="background:var(--color-highlight)"></span><b>Highlight</b><code>--color-highlight</code><span class="sg-hex" data-hex="--color-highlight"></span></li><li class="sg-swatch"><span class="sg-swatch__chip" style="background:var(--color-success)"></span><b>Success</b><code>--color-success</code><span class="sg-hex" data-hex="--color-success"></span></li><li class="sg-swatch"><span class="sg-swatch__chip" style="background:var(--color-warning)"></span><b>Warning</b><code>--color-warning</code><span class="sg-hex" data-hex="--color-warning"></span></li><li class="sg-swatch"><span class="sg-swatch__chip" style="background:var(--color-danger)"></span><b>Danger</b><code>--color-danger</code><span class="sg-hex" data-hex="--color-danger"></span></li></ul>
+    </section>
+
+    <section class="sg-section" id="type" aria-labelledby="type-t">
+      <h2 class="h2" id="type-t">Type scale</h2>
+      <p class="muted" style="margin-bottom:var(--space-4)">Figtree variable (400–700), self-hosted, 20&nbsp;KB. Fluid sizes via <code>clamp()</code>.</p>
+      <div class="sg-type"><span class="sg-type__meta"><code>--text-3xl</code>Display</span><span style="font-size:var(--text-3xl);font-weight:700;letter-spacing:-0.03em;line-height:1.15">Made premium in 5 days.</span></div><div class="sg-type"><span class="sg-type__meta"><code>--text-2xl</code>H2</span><span style="font-size:var(--text-2xl);font-weight:700;letter-spacing:-0.03em;line-height:1.15">Three screens. Five days.</span></div><div class="sg-type"><span class="sg-type__meta"><code>--text-xl</code>H3</span><span style="font-size:var(--text-xl);font-weight:700;letter-spacing:normal;line-height:1.15">The rules your AI follows</span></div><div class="sg-type"><span class="sg-type__meta"><code>--text-lg</code>Large</span><span style="font-size:var(--text-lg);font-weight:600;letter-spacing:normal;line-height:1.15">Design that ships as code</span></div><div class="sg-type"><span class="sg-type__meta"><code>--text-md</code>Medium</span><span style="font-size:var(--text-md);font-weight:400;letter-spacing:normal;line-height:1.15">A one-person studio for AI-built apps.</span></div><div class="sg-type"><span class="sg-type__meta"><code>--text-base</code>Base · 17px</span><span style="font-size:var(--text-base);font-weight:400;letter-spacing:normal;line-height:1.15">Body copy sits at a comfortable 17px with a 1.6 line height for easy reading on phones.</span></div><div class="sg-type"><span class="sg-type__meta"><code>--text-sm</code>Small</span><span style="font-size:var(--text-sm);font-weight:400;letter-spacing:normal;line-height:1.15">Helper text, captions and labels.</span></div><div class="sg-type"><span class="sg-type__meta"><code>--text-xs</code>XS</span><span style="font-size:var(--text-xs);font-weight:400;letter-spacing:normal;line-height:1.15">Eyebrows & badges</span></div>
+    </section>
+
+    <section class="sg-section" aria-labelledby="tok-t">
+      <h2 class="h2" id="tok-t">Radius &amp; elevation</h2>
+      <div class="sg-tokens">
+        <div><span class="sg-box" style="border-radius:var(--radius-sm)"></span><code>radius-sm</code></div><div><span class="sg-box" style="border-radius:var(--radius-md)"></span><code>radius-md</code></div><div><span class="sg-box" style="border-radius:var(--radius-lg)"></span><code>radius-lg</code></div><div><span class="sg-box" style="border-radius:var(--radius-xl)"></span><code>radius-xl</code></div><div><span class="sg-box" style="border-radius:var(--radius-2xl)"></span><code>radius-2xl</code></div>
+        <div><span class="sg-box" style="border-radius:var(--radius-lg);box-shadow:var(--shadow-xs)"></span><code>shadow-xs</code></div><div><span class="sg-box" style="border-radius:var(--radius-lg);box-shadow:var(--shadow-sm)"></span><code>shadow-sm</code></div><div><span class="sg-box" style="border-radius:var(--radius-lg);box-shadow:var(--shadow-md)"></span><code>shadow-md</code></div><div><span class="sg-box" style="border-radius:var(--radius-lg);box-shadow:var(--shadow-lg)"></span><code>shadow-lg</code></div>
+      </div>
+    </section>
+
+    <section class="sg-section" id="buttons" aria-labelledby="btn-t">
+      <h2 class="h2" id="btn-t">Buttons</h2>
+      <div class="sg-row"><span class="sg-label">Variants</span>
+        <button class="btn btn--primary" type="button">Reserve a spot <svg class="btn__arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5.5L15.5 10 11 14.5"/></svg></button>
+        <button class="btn btn--secondary" type="button">Run free audit</button>
+        <button class="btn btn--ghost" type="button">See examples</button>
+      </div>
+      <div class="sg-row"><span class="sg-label">Sizes</span>
+        <button class="btn btn--primary btn--sm" type="button">Small</button>
+        <button class="btn btn--primary" type="button">Default</button>
+        <button class="btn btn--primary btn--lg" type="button">Large</button>
+        <button class="btn btn--secondary btn--icon" type="button" aria-label="Next"><svg class="btn__arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5.5L15.5 10 11 14.5"/></svg></button>
+      </div>
+      <div class="sg-row"><span class="sg-label">States</span>
+        <button class="btn btn--primary" type="button" data-demo-loading>Click to load</button>
+        <button class="btn btn--secondary" type="button" data-demo-loading>Loading demo</button>
+        <button class="btn btn--primary" type="button" disabled>Disabled</button>
+        <button class="btn btn--secondary" type="button" disabled>Disabled</button>
+      </div>
+    </section>
+
+    <section class="sg-section" id="forms" aria-labelledby="form-t">
+      <h2 class="h2" id="form-t">Form controls</h2>
+      <div class="sg-grid sg-grid--2">
+        <div class="field"><label class="label" for="sg-1">App URL</label><input class="input" id="sg-1" placeholder="yourapp.lovable.app"><p class="hint">Helper text sits here.</p></div>
+        <div class="field"><label class="label" for="sg-2">Email</label><input class="input" id="sg-2" value="not-an-email" aria-invalid="true" aria-describedby="sg-2h"><p class="hint hint--error" id="sg-2h">That doesn’t look like an email.</p></div>
+        <div class="field"><label class="label" for="sg-3">Funding stage</label><select class="input" id="sg-3"><option>Pre-seed</option><option>Seed or later</option></select></div>
+        <div class="field"><label class="label" for="sg-4">Disabled</label><input class="input" id="sg-4" value="Can’t touch this" disabled></div>
+      </div>
+      <fieldset class="chips" style="margin-top:var(--space-5)"><legend class="label">Choice chips</legend>
+        <label class="chip"><input type="radio" name="sg-c" checked><span>Lovable</span></label><label class="chip"><input type="radio" name="sg-c"><span>Cursor</span></label><label class="chip"><input type="radio" name="sg-c"><span>Bolt</span></label><label class="chip"><input type="radio" name="sg-c"><span>v0</span></label>
+      </fieldset>
+      <div class="sg-row" style="margin-top:var(--space-5)">
+        <label class="check"><input type="checkbox" checked> Send me the weekly teardown</label>
+        <label class="switch"><input type="checkbox" checked><span class="switch__track" aria-hidden="true"></span>Notifications</label>
+      </div>
+    </section>
+
+    <section class="sg-section" aria-labelledby="card-t">
+      <h2 class="h2" id="card-t">Cards &amp; badges</h2>
+      <div class="sg-grid sg-grid--3">
+        <article class="card card--interactive"><div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 4.9L19 9.8l-4.1 3.3 1.3 5.1L12 15.4l-4.2 2.8 1.3-5.1L5 9.8l5.1-1.9z"/></svg></div><h3>Interactive card</h3><p>Lifts on hover; the icon tilts.</p></article>
+        <article class="card card--interactive"><div class="card__icon card__icon--secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/></svg></div><h3>Secondary icon</h3><p>Indigo for “system” ideas.</p></article>
+        <article class="card"><div class="card__icon card__icon--highlight"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></div><h3>Static card</h3><p>For content that isn’t a link.</p></article>
+      </div>
+      <div class="sg-row" style="margin-top:var(--space-5)">
+        <span class="badge">Neutral</span><span class="badge badge--accent"><span class="badge__dot badge__dot--pulse"></span>Founding 5</span><span class="badge badge--secondary">Design Partner</span><span class="badge badge--success">Great fit</span><span class="badge badge--warning">Promising</span><span class="badge badge--danger">Sold out</span>
+      </div>
+    </section>
+
+    <section class="sg-section" id="feedback" aria-labelledby="fb-t">
+      <h2 class="h2" id="fb-t">Accordion, toast &amp; copy</h2>
+      <div class="sg-grid sg-grid--2">
+        <div class="accordion">
+          <details open><summary>Does it animate open?<span class="accordion__icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 2v10M2 7h10"/></svg></span></summary><div class="accordion__body"><div>Yes, with a smooth height transition on native &lt;details&gt;. Reduced-motion users get an instant toggle.</div></div></details>
+          <details><summary>Is it keyboard friendly?<span class="accordion__icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 2v10M2 7h10"/></svg></span></summary><div class="accordion__body"><div>Native summary elements are focusable and toggle with Enter or Space.</div></div></details>
+        </div>
+        <div style="display:grid;gap:var(--space-4);align-content:start">
+          <div class="toast toast--static" role="presentation"><span class="toast__icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg></span><span>Application received. Thanks!</span></div>
+          <div class="sg-row"><button class="btn btn--secondary" type="button" data-demo-toast="Saved. Nice one.">Show a toast</button>
+          <button class="copy-chip" type="button" data-copy="npx vibe-to-premium"><code>npx vibe-to-premium</code><span class="copy-chip__btn"><span class="copy-chip__label">Copy</span></span></button></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><div class="container"><p class="small muted">© <span data-year>2026</span> Vibe-to-Premium · <a href="index.html">Back to the landing page</a></p></div></footer>
+  <script src="app.js" defer></script>
+  <script>
+    function sgHex(){var cs=getComputedStyle(document.documentElement);document.querySelectorAll('[data-hex]').forEach(function(e){e.textContent=cs.getPropertyValue(e.dataset.hex).trim().toUpperCase()})}
+    addEventListener('DOMContentLoaded',sgHex);new MutationObserver(function(){setTimeout(sgHex,30)}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme','data-resolved-theme']});
+  </script>
+</body>
+</html>

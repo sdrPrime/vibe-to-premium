@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<!--
+  ============================================================================
+  VIBE-TO-PREMIUM · landing page draft v1  (static, no build step, GitHub Pages-ready)
+  ============================================================================
+  PLACEHOLDERS TO SWAP before going live (search the file for each token):
+
+  PAYMENTS  (Finance & Ops is choosing the payment tool: Stripe Payment Links / Lemon Squeezy / Gumroad, all $0 to set up)
+    #PAYMENT_LINK_SPRINT     "Reserve a spot" buttons for the $990 Founding 5 sprint (3 places)
+    #PAYMENT_LINK_KIT        "Pre-order" button for the $49 Design Rules Kit (2 places)
+  FORMS / FOLLOW-UPS  (all in config.js; see README.md)
+    CONTACT_EMAIL            config.js. STILL A PLACEHOLDER: 'hello@REPLACE-ME.com'. Dhaval's real address goes here.
+                             While the Tally IDs are blank, both forms open the visitor's email app (mailto:) to this
+                             address with everything prefilled (application answers + intake_score + intake_tier, or
+                             the waitlist email). The instant intake result still shows on the page.
+    TALLY_RETAINER_FORM_ID   config.js, blank for launch. Optional later: a prefilled Tally popup instead of mailto.
+    TALLY_WAITLIST_FORM_ID   config.js, blank for launch. Hidden fields to create are listed in README.md.
+    #BOOKING_LINK            "Book an intro call" shown to Qualified applicants (e.g. Cal.com free / Calendly free)
+  NUMBERS TO UPDATE BY HAND
+    data-spots-left="5"      Founding 5 spots remaining. MANUAL: edit this one attribute in the sprint card after each
+                             sale; the dots and "5 of 5 founding spots left" text update from it. Always visible.
+    data-base-count="0"      "I want this" counter on the Kit. Placeholder: counts only this browser (localStorage)
+                             until a real counter (e.g. the form tool or a free Supabase row) is wired in.
+    [KIT_SHIP_DATE]          Kit ship date in the Kit section + FAQ fine print
+  CONTENT SLOTS
+    data-slot="..."          Every swappable string (brand, headline, subhead, offers, FAQ)
+    data-slot="work-1..3"    Portfolio / teardown placeholders, replace with real before/afters
+    .ba (hero compare)       "Pulseboard" is a FICTIONAL example app; replace with real client before/after
+  AUDIT (Instant design audit)
+    PSI_API_KEY in config.js Free, referrer-restricted Google browser key (keyless quota is shared and often
+                             exhausted, returns HTTP 429). Appended as &key= only when non-empty. An LLM-written teardown could be layered on later,
+                             only with Dhaval's OK on cost.
+  META
+    https://sdrprime.github.io/vibe-to-premium/   og:url / og:image / canonical / twitter:image (repo name set)
+  ============================================================================
+-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vibe-to-Premium · Make your AI-built app look premium in 5 days</title>
+  <meta name="description" content="A one-person design studio for apps built with Lovable, Cursor, Bolt and v0. Three premium screens in five days, shipped as a pull request.">
+  <link rel="canonical" href="https://sdrprime.github.io/vibe-to-premium/">
+  <meta name="theme-color" content="#FBF8F3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1A1714" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Vibe-to-Premium">
+  <meta property="og:title" content="Your vibe-coded app, made premium in 5 days">
+  <meta property="og:description" content="Three redesigned screens, shipped as a pull request, with rules your AI follows next time.">
+  <meta property="og:url" content="https://sdrprime.github.io/vibe-to-premium/">
+  <meta property="og:image" content="https://sdrprime.github.io/vibe-to-premium/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/figtree-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <script>(function(){var d=document.documentElement,t=null;d.classList.add('js');try{t=localStorage.getItem('theme')}catch(e){}if(t)d.dataset.theme=t;d.dataset.resolvedTheme=t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')})()</script>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="container nav__inner">
+      <a class="brand" href="#top" aria-label="Vibe-to-Premium home"><svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--color-accent)"/><path d="M8.5 19.5c2-3.5 3.6-3.5 5 0s3-3.5 5 0" stroke="var(--color-accent-ink)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/><path d="M21.5 8.5l1.1 2.6 2.6 1.1-2.6 1.1-1.1 2.6-1.1-2.6-2.6-1.1 2.6-1.1z" fill="var(--color-accent-ink)"/></svg><span data-slot="brand">Vibe-to-Premium</span></a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="#audit">Free audit</a></li>
+          <li><a href="#sprint">Sprint</a></li>
+          <li><a href="#kit">Kit</a></li>
+          <li><a href="#partner">Design Partner</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <div class="nav__actions">
+        <button class="btn btn--ghost btn--icon btn--sm theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button>
+        <a class="btn btn--primary btn--sm" href="#sprint" data-slot="nav-cta">Reserve a spot</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero__copy">
+          <a class="announce reveal" href="#sprint"><span class="badge badge--accent">Founding 5</span><span data-slot="announcement">$990 launch price for the first five founders</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5L10.5 8 6 12.5"/></svg></a>
+          <h1 class="display reveal" id="hero-title" style="--reveal-delay:60ms" data-slot="headline">Your vibe-coded app, made <span class="mark">premium</span> in 5 days.</h1>
+          <p class="lead reveal" style="--reveal-delay:120ms" data-slot="subhead">You built it fast with Lovable, Cursor, Bolt or v0. I make it look like a funded team built it, then ship the redesign back to you as code your AI keeps consistent.</p>
+          <div class="hero__ctas reveal" style="--reveal-delay:180ms">
+            <a class="btn btn--primary btn--lg" href="#sprint" data-slot="hero-cta">Reserve a Founding 5 spot <svg class="btn__arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5.5L15.5 10 11 14.5"/></svg></a>
+            <a class="btn btn--secondary btn--lg" href="#audit" data-slot="hero-cta-2">Get a free instant audit</a>
+          </div>
+          <p class="hero__note reveal" style="--reveal-delay:220ms"><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg>3 screens</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg>5 business days</span><span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg>Shipped as a pull request</span></p>
+        </div>
+
+        <!-- Hero before/after. EXAMPLE ONLY: "Pulseboard" is fictional. Swap for real client work when it exists. -->
+        <div class="hero__visual reveal" style="--reveal-delay:260ms">
+          <div class="compare-bar">
+            <div class="seg" role="group" aria-label="Show before or after" data-state="mid">
+              <span class="seg__pill" aria-hidden="true"></span>
+              <button type="button" data-ba-show="before" aria-pressed="false">Before</button>
+              <button type="button" data-ba-show="after" aria-pressed="false">After</button>
+            </div>
+            <span class="placeholder-note">Example redesign of a fictional app</span>
+          </div>
+          <div class="ba" data-ba data-state="mid">
+            <div class="ba__layer ba__before" aria-hidden="true">
+              <div class="v">
+                <div class="v-top"><span class="v-logo">✨ Pulseboard AI</span><span class="v-links"><span>Dashboard</span><span>Analytics</span><span>Customers</span><span>Settings</span></span><span class="v-avatar">A</span></div>
+                <div class="v-body">
+                  <div class="v-hero"><b>Welcome back, Alex! 👋</b><small>Here’s what’s happening with your business today</small><i>🚀 Generate AI Insights</i></div>
+                  <div class="v-stats">
+                    <div class="v-stat"><div class="v-emoji">💰</div><div class="v-num">$48,210</div><div class="v-lbl">Monthly Revenue</div><div class="v-chg">↑ 12.4% from last month!</div></div>
+                    <div class="v-stat"><div class="v-emoji">👥</div><div class="v-num">3,912</div><div class="v-lbl">Active Users</div><div class="v-chg">↑ 8.1% from last month!</div></div>
+                    <div class="v-stat"><div class="v-emoji">📉</div><div class="v-num">2.1%</div><div class="v-lbl">Churn Rate</div><div class="v-chg">↓ 0.4% from last month!</div></div>
+                  </div>
+                  <div class="v-chart"><b>📊 Revenue Overview</b><div class="v-bars"><span style="height:40%"></span><span style="height:55%"></span><span style="height:48%"></span><span style="height:62%"></span><span style="height:58%"></span><span style="height:74%"></span><span style="height:70%"></span><span style="height:86%"></span><span style="height:92%"></span></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="ba__layer ba__after" aria-hidden="true">
+              <div class="p">
+                <aside class="p-rail">
+                  <div class="p-brand"><i></i>Pulseboard</div>
+                  <div class="p-nav is-on"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="5" height="5" rx="1.2"/><rect x="9" y="2" width="5" height="5" rx="1.2"/><rect x="2" y="9" width="5" height="5" rx="1.2"/><rect x="9" y="9" width="5" height="5" rx="1.2"/></svg>Overview</div>
+                  <div class="p-nav"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="5.5" r="2.5"/><path d="M3 14c.8-2.6 2.7-4 5-4s4.2 1.4 5 4"/></svg>Customers</div>
+                  <div class="p-nav"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 12l4-4 3 2.5L14 5"/></svg>Revenue</div>
+                  <div class="p-nav"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="2.2"/><path d="M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2"/></svg>Settings</div>
+                </aside>
+                <div class="p-main">
+                  <div class="p-head"><div><small>Tuesday, November 3</small><b>Good morning, Alex</b></div><div class="p-seg"><span>7d</span><span class="is-on">30d</span><span>90d</span></div></div>
+                  <div class="p-kpis">
+                    <div class="p-kpi"><small>MRR</small><b>$48.2k</b><span class="p-delta">+12.4%</span></div>
+                    <div class="p-kpi"><small>Active users</small><b>3,912</b><span class="p-delta">+8.1%</span></div>
+                    <div class="p-kpi"><small>Churn</small><b>2.1%</b><span class="p-delta">−0.4 pts</span></div>
+                  </div>
+                  <div class="p-split">
+                    <div class="p-card"><div class="p-card__head">Revenue<span>Last 30 days</span></div>
+                      <svg class="p-chart" viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true">
+                        <defs><linearGradient id="pfill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="currentColor" stop-opacity=".22"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs>
+                        <path class="grid" d="M0 30H300M0 60H300M0 90H300" stroke-width="1" vector-effect="non-scaling-stroke" stroke-dasharray="3 4"/>
+                        <path d="M0 96 C25 92 38 84 60 86 S95 70 120 72 S160 52 180 58 S220 40 240 34 S280 22 300 14 V120 H0Z" fill="url(#pfill)"/>
+                        <path d="M0 96 C25 92 38 84 60 86 S95 70 120 72 S160 52 180 58 S220 40 240 34 S280 22 300 14" fill="none" stroke="currentColor" stroke-width="2.2" vector-effect="non-scaling-stroke" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <div class="p-card p-list"><div class="p-card__head">New customers<span>Today</span></div>
+                      <div class="p-row"><span class="p-av">MK</span><span>Maya K.<br><em>Pro</em></span><strong>$49</strong></div>
+                      <div class="p-row"><span class="p-av">JD</span><span>Jonas D.<br><em>Team</em></span><strong>$129</strong></div>
+                      <div class="p-row"><span class="p-av">RS</span><span>Riya S.<br><em>Pro</em></span><strong>$49</strong></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="ba__tag ba__tag--before" aria-hidden="true">Before</span>
+            <span class="ba__tag ba__tag--after" aria-hidden="true">After</span>
+            <div class="ba__line" aria-hidden="true"><span class="ba__knob"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 5.5L3 10l4.5 4.5M12.5 5.5L17 10l-4.5 4.5"/></svg></span></div>
+            <input type="range" min="0" max="100" value="50" aria-label="Compare before and after: drag left to reveal the redesign" aria-valuetext="50% before, 50% after">
+          </div>
+          <p class="compare-caption"><span>Drag the handle, or tap Before / After.</span><span>Same data, same features. Different first impression.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Builders ===== -->
+    <section class="builders" aria-label="Builders I work with">
+      <div class="container">
+        <p class="builders__label">Made for apps built with</p>
+        <ul><li>Lovable</li><li>Cursor</li><li>Bolt</li><li>v0</li><li>Claude Code</li></ul>
+        <small>Independent studio. Not affiliated with any of these tools.</small>
+      </div>
+    </section>
+
+    <!-- ===== Why ===== -->
+    <section class="section section--sunken" aria-labelledby="why-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Why founders hire me</p>
+          <h2 class="h2" id="why-title" data-slot="why-title">Your app works. It just looks like everyone else’s.</h2>
+          <p data-slot="why-sub">Same gradients, same cards, same emoji headers. Users can’t say why, but they can tell, and they trust it less.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card card--interactive reveal">
+            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 4.9L19 9.8l-4.1 3.3 1.3 5.1L12 15.4l-4.2 2.8 1.3-5.1L5 9.8l5.1-1.9z"/></svg></div>
+            <h3>Taste, not templates</h3>
+            <p>Hierarchy, spacing, type and restraint, decided by a designer who’s looked at your users, not by a prompt.</p>
+          </article>
+          <article class="card card--interactive reveal" style="--reveal-delay:80ms">
+            <div class="card__icon card__icon--secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M6 8.5v7M8.3 7.2c4 .6 7.2 2.2 7.4 4.3"/></svg></div>
+            <h3>Shipped as code</h3>
+            <p>No Figma file you have to rebuild. You get a pull request against your repo that you can merge the same day.</p>
+          </article>
+          <article class="card card--interactive reveal" style="--reveal-delay:160ms">
+            <div class="card__icon card__icon--highlight"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div>
+            <h3>Stays premium</h3>
+            <p>A <code>DESIGN.md</code> rules file and tokens teach Cursor, Lovable and Claude your new style, so screen #4 matches screen #1.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Instant audit (PageSpeed Insights, client-side) ===== -->
+    <section class="section" id="audit" aria-labelledby="audit-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Free · takes under a minute</p>
+          <h2 class="h2" id="audit-title">Instant design audit</h2>
+          <p>Paste your app’s URL. I’ll run it through Google Lighthouse on a simulated phone and translate the results into plain design advice.</p>
+        </div>
+        <div class="audit card reveal">
+          <form class="audit__form" data-audit novalidate>
+            <label class="label" for="audit-url">Your app’s public URL</label>
+            <div class="audit__row">
+              <input class="input" id="audit-url" name="url" type="url" inputmode="url" autocomplete="url" placeholder="yourapp.lovable.app" required aria-describedby="audit-hint">
+              <button class="btn btn--primary btn--lg" type="submit">Audit my app <svg class="btn__arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5.5L15.5 10 11 14.5"/></svg></button>
+            </div>
+            <p class="hint" id="audit-hint">Works on any public page. Nothing is stored.</p>
+          </form>
+          <div class="audit__panel" data-audit-panel aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Offer 1: Founding 5 sprint ===== -->
+    <section class="section section--sunken" id="sprint" aria-labelledby="sprint-title">
+      <div class="container offer">
+        <div class="reveal">
+          <p class="eyebrow">Premium Screen Sprint</p>
+          <h2 class="h2" id="sprint-title" data-slot="sprint-title">Three screens. Five days. One pull request.</h2>
+          <p class="lead" style="margin-top:var(--space-4)" data-slot="sprint-sub">Pick the three screens that make or break your first impression. Usually that’s the landing page, onboarding and the main dashboard.</p>
+          <ul class="include"><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg><span>A recorded teardown of your current UI, so you see what changes and why</span></li><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg><span>3 screens redesigned and built in your codebase (React, Tailwind, shadcn/ui)</span></li><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg><span>A <code>DESIGN.md</code> rules file + tokens your AI tools follow from now on</span></li><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg><span>One revision round, and a Loom walkthrough at handoff</span></li></ul>
+          <ol class="timeline" aria-label="Sprint timeline">
+            <li><b>Day 0</b><p><strong>Kickoff</strong>Share the repo and pick your 3 screens. A 15-minute call or async, your choice.</p></li>
+            <li><b>Day 1–2</b><p><strong>Direction</strong>You see the new look on your real screens before anything is built.</p></li>
+            <li><b>Day 3–4</b><p><strong>Build</strong>I implement it in your code, responsive and accessible.</p></li>
+            <li><b>Day 5</b><p><strong>Ship</strong>PR, rules file and walkthrough land in your inbox. Merge and launch.</p></li>
+          </ol>
+        </div>
+        <aside class="offer__aside reveal" style="--reveal-delay:100ms">
+          <!-- SPOTS: data-spots-left is updated MANUALLY after each sale (no live counter). -->
+          <div class="card price-card" data-spots data-spots-total="5" data-spots-left="5">
+            <div class="spaced"><span class="badge badge--accent"><span class="badge__dot badge__dot--pulse"></span>Founding 5 pricing</span></div>
+            <p class="price"><span class="price__amount">$990</span><span class="price__was">$1,490</span><span class="muted small">one-time</span></p>
+            <div class="spots">
+              <div class="spots__dots" aria-hidden="true"></div>
+              <p class="spots__label"><span><b data-spots-text>5 of 5</b> founding spots left</span></p>
+            </div>
+            <!-- PAYMENT: placeholder. Finance & Ops is choosing the payment tool. -->
+            <a class="btn btn--primary btn--lg" href="#PAYMENT_LINK_SPRINT" data-payment="sprint">Reserve a spot · $990 <svg class="btn__arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5.5L15.5 10 11 14.5"/></svg></a>
+            <p class="fineprint">Price goes to $1,490 after five founders. The full $990 counts toward Design Partner if you upgrade within 14 days. Best for apps with paying users, a raise, or a launch date.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== Work (portfolio placeholders) ===== -->
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Teardowns</p>
+          <h2 class="h2" id="work-title">Before &amp; afters, in public</h2>
+          <p>I post a teardown of a real AI-built app every week. The first ones land here soon.</p>
+        </div>
+        <div class="grid-3">
+          <div class="slot reveal" data-slot="work-1"><div><b>Teardown #1</b>Placeholder · coming this week</div></div>
+          <div class="slot reveal" style="--reveal-delay:80ms" data-slot="work-2"><div><b>Teardown #2</b>Placeholder · coming soon</div></div>
+          <div class="slot reveal" style="--reveal-delay:160ms" data-slot="work-3"><div><b>Your app?</b>Founding 5 clients can opt in to a case study</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Offer 2: Design Rules Kit ===== -->
+    <section class="section section--sunken" id="kit" aria-labelledby="kit-title">
+      <div class="container kit">
+        <div class="reveal">
+          <p class="eyebrow">Design Rules Kit · pre-order</p>
+          <h2 class="h2" id="kit-title" data-slot="kit-title">Teach your AI some taste, for $49.</h2>
+          <p class="lead" style="margin-top:var(--space-4)">Drop one folder into your project and your next prompt comes back calmer, cleaner and on-brand.</p>
+          <ul class="include"><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg><span><code>DESIGN.md</code>: the rules I use, written for Cursor, Lovable, Bolt and v0</span></li><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg><span>Design tokens for color, type, spacing, radius and shadow, light and dark</span></li><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg><span>A ready-made shadcn/ui theme</span></li><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg><span>A prompt pack for the 12 screens every SaaS needs</span></li></ul>
+          <div class="kit__actions">
+            <!-- PAYMENT: placeholder. Finance & Ops is choosing the payment tool. -->
+            <a class="btn btn--primary btn--lg" href="#PAYMENT_LINK_KIT" data-payment="kit">Pre-order · $49</a>
+            <button class="want" type="button" aria-pressed="false" data-want="kit" data-base-count="0" aria-label="I want this">
+              <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 3.9 4 7.5 4c2 0 3.5 1.1 4.5 2.6C13 5.1 14.5 4 16.5 4c3.6 0 5.9 3.6 4.7 7.1-1.7 4.8-9.2 9.4-9.2 9.4z"/></svg>
+              <span>I want this</span><span class="want__count" data-want-count>0</span>
+            </button>
+          </div>
+          <p class="fineprint" style="margin-top:var(--space-3)">Ships <span data-slot="kit-ship-date">[KIT_SHIP_DATE]</span>. Full refund if it doesn’t.</p>
+          <!-- HEART COUNTER: "I want this" count is local-only (this browser, localStorage) until a real counter is wired in; data-base-count is set by hand. -->
+        </div>
+        <div class="kit__file reveal" style="--reveal-delay:100ms" aria-label="Preview of the DESIGN.md file" role="img">
+          <div class="kit__tabs" aria-hidden="true"><span class="is-on">DESIGN.md</span><span>tokens.css</span><span>theme.json</span><span>prompts/</span></div>
+<pre class="kit__code" aria-hidden="true"><span class="k"># Design rules</span>
+<span class="k">## Color</span>
+- One accent. Use it for the primary action only.
+- Never put gradients behind text.
+<span class="k">## Type</span>
+- Max 2 weights per screen: <span class="s">400</span> and <span class="s">600</span>.
+- Numbers use tabular figures.
+<span class="k">## Space</span>
+- 4px grid. Sections breathe at <span class="s">96px</span>.
+- Left-align anything longer than a line.
+<span class="k">## Never</span>
+- Emoji in headings. Centered paragraphs.</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Offer 3: Design Partner retainer + AI-assisted intake ===== -->
+    <section class="section" id="partner" aria-labelledby="partner-title">
+      <div class="container partner">
+        <div class="reveal">
+          <p class="eyebrow">Design Partner · 3 founding spots</p>
+          <h2 class="h2" id="partner-title" data-slot="partner-title">A senior designer on call, for less than a junior hire.</h2>
+          <p class="price" style="margin-top:var(--space-5)"><span class="price__amount">$2,950</span><span class="muted">/month</span></p>
+          <ul class="include"><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg><span>Unlimited requests, worked one at a time</span></li><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg><span>Delivered async as pull requests, so no meetings needed</span></li><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg><span>Pause or cancel anytime</span></li><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg><span>Founding rate for the first three partners</span></li></ul>
+          <p class="fineprint" style="margin-top:var(--space-5)">I only take a few partners at once so every one gets real attention. Apply in about a minute; you’ll see your next step right away.</p>
+        </div>
+        <div class="reveal" style="--reveal-delay:100ms">
+          <!-- FORM: scored on the page, then handed to Tally when TALLY_RETAINER_FORM_ID is set in config.js. -->
+          <form class="card intake" data-intake novalidate>
+            <input type="hidden" name="intake_score" value="">
+            <input type="hidden" name="intake_tier" value="">
+            <input type="hidden" name="source" value="landing-v1">
+            <div class="intake__two">
+              <div class="field"><label class="label" for="app-name">App name</label><input class="input" id="app-name" name="app_name" autocomplete="organization" required placeholder="Pulseboard"></div>
+              <div class="field"><label class="label" for="app-url">App URL</label><input class="input" id="app-url" name="app_url" type="url" inputmode="url" required placeholder="https://pulseboard.app"></div>
+            </div>
+            <fieldset class="chips" data-required>
+              <legend class="label">Built with</legend>
+              <label class="chip"><input type="radio" name="builder" value="lovable"><span>Lovable</span></label>
+              <label class="chip"><input type="radio" name="builder" value="cursor"><span>Cursor</span></label>
+              <label class="chip"><input type="radio" name="builder" value="bolt"><span>Bolt</span></label>
+              <label class="chip"><input type="radio" name="builder" value="v0"><span>v0</span></label>
+              <label class="chip"><input type="radio" name="builder" value="other"><span>Other</span></label>
+            </fieldset>
+            <fieldset class="chips" data-required>
+              <legend class="label">Users today</legend>
+              <label class="chip"><input type="radio" name="users" value="none"><span>Not yet</span></label>
+              <label class="chip"><input type="radio" name="users" value="lt100"><span>Under 100</span></label>
+              <label class="chip"><input type="radio" name="users" value="100-1k"><span>100–1,000</span></label>
+              <label class="chip"><input type="radio" name="users" value="1k+"><span>1,000+</span></label>
+            </fieldset>
+            <div class="intake__two">
+              <div class="field"><label class="label" for="funding">Funding stage</label>
+                <select class="input" id="funding" name="funding" required>
+                  <option value="">Choose one</option>
+                  <option value="bootstrapped-pre">Bootstrapped, no revenue yet</option>
+                  <option value="bootstrapped-rev">Bootstrapped, with revenue</option>
+                  <option value="preseed">Pre-seed or angel</option>
+                  <option value="seed+">Seed or later</option>
+                </select></div>
+              <div class="field"><label class="label" for="launch">Launch date</label>
+                <select class="input" id="launch" name="launch" required>
+                  <option value="">Choose one</option>
+                  <option value="live">Already live</option>
+                  <option value="30d">Within 30 days</option>
+                  <option value="90d">In 1–3 months</option>
+                  <option value="none">No date yet</option>
+                </select></div>
+            </div>
+            <fieldset class="chips" data-required>
+              <legend class="label">Is $2,950/month in budget?</legend>
+              <label class="chip"><input type="radio" name="budget" value="yes"><span>Yes</span></label>
+              <label class="chip"><input type="radio" name="budget" value="maybe"><span>If it’s the right fit</span></label>
+              <label class="chip"><input type="radio" name="budget" value="no"><span>Not right now</span></label>
+            </fieldset>
+            <div class="field"><label class="label" for="intake-email">Email</label><input class="input" id="intake-email" name="email" type="email" autocomplete="email" required placeholder="you@yourapp.com"></div>
+            <p class="hint" data-intake-hint aria-live="polite">Takes about a minute. I reply personally within one business day.</p>
+            <button class="btn btn--primary btn--lg" type="submit">Apply for a founding spot <svg class="btn__arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h11M11 5.5L15.5 10 11 14.5"/></svg></button>
+          </form>
+          <div class="card intake-result" data-intake-result hidden aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section section--sunken" id="faq" aria-labelledby="faq-title">
+      <div class="container--narrow">
+        <div class="section-head reveal"><p class="eyebrow">FAQ</p><h2 class="h2" id="faq-title">Good questions</h2></div>
+        <div class="accordion reveal">
+          <details open><summary data-slot="faq-1-q">What do I actually get from a sprint?<span class="accordion__icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 2v10M2 7h10"/></svg></span></summary><div class="accordion__body"><div data-slot="faq-1-a">Three redesigned screens, built in your codebase and delivered as a pull request. You also get a <code>DESIGN.md</code> rules file and design tokens so Cursor, Lovable or Claude keep new screens consistent, plus a short Loom walking through every decision. One revision round is included.</div></div></details><details><summary data-slot="faq-2-q">Do you work in my actual code?<span class="accordion__icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 2v10M2 7h10"/></svg></span></summary><div class="accordion__body"><div data-slot="faq-2-a">Yes. Give me access to the GitHub repo and I ship a PR against your stack, usually React, Tailwind and shadcn/ui. Lovable, Bolt and v0 projects can all sync or export to GitHub. If yours can’t, I’ll hand over the code as a zip.</div></div></details><details><summary data-slot="faq-3-q">Can’t I just prompt my AI to “make it look premium”?<span class="accordion__icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 2v10M2 7h10"/></svg></span></summary><div class="accordion__body"><div data-slot="faq-3-a">You can, and you’ll get a different flavor of the same default. What’s missing is judgment: hierarchy, spacing, restraint, knowing what to remove. I make those calls, then write them down as rules your AI follows next time.</div></div></details><details><summary data-slot="faq-4-q">Who is this for?<span class="accordion__icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 2v10M2 7h10"/></svg></span></summary><div class="accordion__body"><div data-slot="faq-4-a">Founders of AI-built apps that are getting real: paying users, a raise in progress, or a launch date like a Product Hunt day or demo day. If you’re still exploring an idea, the $49 Kit is the better place to start.</div></div></details><details><summary data-slot="faq-5-q">What if I don’t love the result?<span class="accordion__icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 2v10M2 7h10"/></svg></span></summary><div class="accordion__body"><div data-slot="faq-5-a">Every sprint includes a revision round, and you see direction on day 2, before anything is built. Refund terms are confirmed in writing before you pay.</div></div></details><details><summary data-slot="faq-6-q">Who’s behind Vibe-to-Premium?<span class="accordion__icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 2v10M2 7h10"/></svg></span></summary><div class="accordion__body"><div data-slot="faq-6-a">I’m Dhaval Patel, a product designer. It’s a one-person studio: no account managers, no handoffs. You talk to the person doing the work.</div></div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Final CTA: weekly teardown email ===== -->
+    <section class="section" id="get-started" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-card reveal">
+          <p class="eyebrow">Not ready yet?</p>
+          <h2 class="h2" id="cta-title" style="margin-top:var(--space-3)">Get one teardown a week.</h2>
+          <p class="lead">A real AI-built app, redesigned, with the exact rules I used. Free, short, and useful even if you never hire me.</p>
+          <div class="capture-wrap">
+            <!-- FORM: handed to Tally when TALLY_WAITLIST_FORM_ID is set in config.js. -->
+            <form class="capture" data-capture novalidate>
+              <label class="sr-only" for="email">Email address</label>
+              <input class="input" id="email" name="email" type="email" autocomplete="email" placeholder="you@yourapp.com" required aria-describedby="email-hint">
+              <button class="btn btn--primary" type="submit">Send me teardowns</button>
+            </form>
+            <p class="hint" id="email-hint" aria-live="polite">One email a week. Unsubscribe in one click.</p>
+            <p class="capture__success" hidden><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="8"/><path d="M6.5 10.5l2.3 2.3 4.7-5.3"/></svg><span>You’re in. First teardown goes to <span class="capture__email"></span>.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand stack">
+          <a class="brand" href="#top" aria-label="Vibe-to-Premium home"><svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--color-accent)"/><path d="M8.5 19.5c2-3.5 3.6-3.5 5 0s3-3.5 5 0" stroke="var(--color-accent-ink)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/><path d="M21.5 8.5l1.1 2.6 2.6 1.1-2.6 1.1-1.1 2.6-1.1-2.6-2.6-1.1 2.6-1.1z" fill="var(--color-accent-ink)"/></svg><span data-slot="brand">Vibe-to-Premium</span></a>
+          <p class="small muted" style="max-width:20rem">A one-person design studio for apps built with AI. Run by Dhaval Patel.</p>
+        </div>
+        <nav aria-labelledby="f-work"><h2 id="f-work">Work with me</h2><ul><li><a href="#sprint">Screen Sprint</a></li><li><a href="#kit">Design Rules Kit</a></li><li><a href="#partner">Design Partner</a></li></ul></nav>
+        <nav aria-labelledby="f-free"><h2 id="f-free">Free</h2><ul><li><a href="#audit">Instant audit</a></li><li><a href="#work">Teardowns</a></li><li><a href="components.html">Styleguide</a></li></ul></nav>
+        <nav aria-labelledby="f-contact"><h2 id="f-contact">Contact</h2><ul><li><a href="#partner">Apply</a></li><li><a href="#faq">FAQ</a></li></ul></nav>
+      </div>
+      <div class="footer__bottom"><span>© <span data-year>2026</span> <span data-slot="brand">Vibe-to-Premium</span></span><button class="btn btn--ghost btn--icon btn--sm theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button></div>
+    </div>
+  </footer>
+
+  <div class="toast-region"></div>
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="landing.js" defer></script>
+</body>
+</html>
