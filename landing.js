@@ -242,7 +242,7 @@
         cta: "Book your intro call", href: "#BOOKING_LINK" },
       maybe: { badge: "badge--warning", label: "Promising", color: "var(--color-warning)",
         h: "Let’s start with a sprint.", p: (n) => `A 5-day sprint is the lowest-risk way to see what premium looks like for ${n}. If you upgrade within 14 days, the full $990 counts toward Design Partner.`,
-        cta: "Reserve a Founding 5 spot · $990", href: "#PAYMENT_LINK_SPRINT" },
+        cta: "Reserve a Founding 5 spot · $990", href: "https://buy.stripe.com/fZu4gt177fwG9BvaHr1Nu00" },
       "not-yet": { badge: "badge--accent", label: "A bit early", color: "var(--color-accent)",
         h: "Start with the Design Rules Kit.", p: (n) => `${n} is early, which is the perfect time to set good rules. The $49 Kit gives your AI the same taste I’d bring, and you can apply again when you’ve got users.`,
         cta: "Pre-order the Kit · $49", href: "#PAYMENT_LINK_KIT" },
