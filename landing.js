@@ -245,7 +245,7 @@
         cta: "Reserve a Founding 5 spot · $990", href: "https://buy.stripe.com/fZu4gt177fwG9BvaHr1Nu00" },
       "not-yet": { badge: "badge--accent", label: "A bit early", color: "var(--color-accent)",
         h: "Start with the Design Rules Kit.", p: (n) => `${n} is early, which is the perfect time to set good rules. The $49 Kit gives your AI the same taste I’d bring, and you can apply again when you’ve got users.`,
-        cta: "Pre-order the Kit · $49", href: "#PAYMENT_LINK_KIT" },
+        cta: "Pre-order the Kit · $49", href: "https://buy.polar.sh/polar_cl_x70x0vdrGHAwyAJBCeGuK5L42NKpuYjWLFuna1MuphC" },
     };
     const hint = $("[data-intake-hint]", intake), hintText = hint.textContent;
     intake.addEventListener("change", e => { const fs = e.target.closest("fieldset"); if (fs) fs.removeAttribute("aria-invalid"); });
