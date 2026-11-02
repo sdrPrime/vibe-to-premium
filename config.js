@@ -12,5 +12,5 @@ window.V2P_CONFIG = {
 
   // Where applications and waitlist sign-ups go while the Tally IDs are blank: the forms
   // open the visitor's email app (mailto:) with everything prefilled. REPLACE before launch.
-  CONTACT_EMAIL: 'hello@REPLACE-ME.com'
+  CONTACT_EMAIL: 'dhavalm.pat@outlook.com'
 };
