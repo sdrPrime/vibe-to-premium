@@ -18,7 +18,7 @@ window.V2P_CONFIG = {
   PSI_API_KEY: '…',                     // config.js line 6 (set)
   TALLY_RETAINER_FORM_ID: '',           // config.js line 10 (blank for launch)
   TALLY_WAITLIST_FORM_ID: '',           // config.js line 11 (blank for launch)
-  CONTACT_EMAIL: 'hello@REPLACE-ME.com' // config.js line 15: REPLACE with Dhaval's real address before launch
+  CONTACT_EMAIL: 'dhavalm.pat@outlook.com' // config.js line 15
 };
 ```
 
@@ -52,7 +52,7 @@ With an empty ID (the launch setup), the form opens the visitor's email app inst
 
 ### Contact email (blocker)
 
-`CONTACT_EMAIL` on `config.js` line 15 is still the placeholder `hello@REPLACE-ME.com`. Put Dhaval's real address there before launch, or applications will go nowhere.
+`CONTACT_EMAIL` on `config.js` line 15 is set to `dhavalm.pat@outlook.com`; mailto applications and sign-ups go there.
 
 **Hidden fields to create in Tally.** Add a "Hidden fields" block and use these names exactly, all lowercase:
 
